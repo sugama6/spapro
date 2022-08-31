@@ -1,0 +1,21 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者ポートフォリオ削除確認{% endblock %}
+
+{% block content %}
+<h2 style="background-color: #f8611b;">G711_admin_portfolio_delete_conf</h2>
+
+<p>
+    {{ portfolio.user_id.last_name }} {{ portfolio.user_id.first_name }} の 【{{ portfolio.title }}】を本当に削除しますか？<br>
+    <small>※削除すると戻すことはできません</small>
+</p>
+
+<form action="{% url 'G712_admin_portfolio_delete_comp' portfolio.id %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" type="確定">
+</form>
+<a href="{% url 'G710_admin_portfolio_edit' portfolio.id %}"><button>戻る</button></a>
+
+{% endblock %}

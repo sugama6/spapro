@@ -1,0 +1,43 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}お知らせ{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G150_news</h2>
+                    <h2 class="text-dark page-title">お知らせ</h4>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    {% for n in news %}
+    <div class="card p-2 m-3">
+        <div class="card-header">
+            <h5 class="mt-0 text-spapro">{{ n.title }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="media">
+                <img src="{{ n.image }}" class="mr-3" alt="..." width="100">
+                <div class="media-body">
+                    <div class="p-2">
+                        {{ n.content|truncatechars:100 }}
+                    </div>
+                    <div class="text-right text-secondary">
+                        <span class="p-2"><small>更新日: {{ n.insert_time|date:"Y年n月j日" }}</small></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}問い合わせ内容詳細{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G660_admin_inquiry_detail</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">問い合わせ詳細</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <label class="form-label" for="">問い合わせ元</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ inquiry.user_id.last_name }} {{ inquiry.user_id.first_name }}
+                        </div>
+
+                        <label class="form-label" for="title">件名</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ inquiry.title }}
+                        </div>
+
+                        <label class="form-label" for="content">内容</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ inquiry.content }}
+                        </div>
+
+                        <hr>
+
+                        {% if inquiry.answer_flg == True %}
+                        <div class="col-lg-6 pb-3 error_message">
+                            回答済み
+                        </div>
+                        {% elif inquiry.answer_flg == False %}
+                        
+                        <form action="{% url 'G680_admin_inquiry_res_conf' inquiry.id %}" method="POST">
+                            {% csrf_token %}
+                            <label class="form-label" for="">返信内容</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.content }}
+                            </div>
+
+                            <div class="btn-block col-lg-6 pb-3">
+                                <input type="submit" class="btn btn-spapro-admin back-btn" value="送信内容確認">
+                            </div>
+                        </form>
+                        {% endif %}
+
+                        <div class="btn-block col-lg-6 pb-3">
+                            <a href="{% url 'G650_admin_inquiry_list' %}">
+                                <button class="btn btn-secondary back-btn">戻る</button>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

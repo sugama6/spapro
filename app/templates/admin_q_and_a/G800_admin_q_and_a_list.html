@@ -1,0 +1,39 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者ポートフォリオ詳細{% endblock %}
+
+{% block content %}
+
+<h2>G800_admin_q_and_a_list</h2>
+
+<a href="{% url 'G810_admin_q_and_a_reg' %}"><button>新規登録</button></a>
+<table>
+    <thead>
+        <tr>
+            <th>質問</th>
+            <th>回答</th>
+            <th>更新日</th>
+            <th>更新者</th>
+            <th>表示順</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for qa in q_and_a_list %}
+        <tr>
+            <td>{{ qa.question|truncatechars:50 }}</td>
+            <td>{{ qa.answer|truncatechars:50 }}</td>
+            <td>{{ qa.update_time|date:"Y年n月j日" }}</td>
+            <td>{{ qa.update_admin_user_id.last_name }} {{ qa.update_admin_user_id.first_name }}</td>
+            <td>{{ qa.sort }}</td>
+            <td><button>上に</button></td>
+            <td><a href="{% url 'G831_admin_q_and_a_detail' qa.id %}"><button>詳細</button></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

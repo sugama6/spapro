@@ -1,0 +1,70 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}問い合わせ内容確認{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G171_inquiry_conf</h2>
+                    <h2 class="text-dark page-title">問い合わせ内容確認</h4>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">管理者編集</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <label for="title"><strong>件名</strong></label>
+                        <div class="pb-3">
+                            {{ request.title }}
+                        </div>
+
+                        <label for="content"><strong>問い合わせ内容</strong></label>
+                        <div class="pb-3">
+                            {{ request.content }}
+                        </div>
+
+                        <!-- <div class="row"> -->
+                        <form action="{% url 'G180_inquiry_comp' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="title" value="{{ request.title }}">
+                            <input type="hidden" name="content" value="{{ request.content }}">
+
+                            <div class="col-lg-6 pb-3">
+                                <input class="btn back-btn btn-spapro" type="submit" value="送信">
+                            </div>
+                        </form>
+
+                        <form action="{% url 'G170_inquiry' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="title" value="{{ request.title }}">
+                            <input type="hidden" name="content" value="{{ request.content }}">
+                            <!-- <input class="btn btn-secondary" type="submit" value="戻る"> -->
+                            <div class="col-lg-6 pb-3">
+                                <input class="btn back-btn btn-secondary" type="submit" value="戻る">
+                            </div>
+                        </form>
+                        <!-- </div> -->
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

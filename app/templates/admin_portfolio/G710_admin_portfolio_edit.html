@@ -1,0 +1,51 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者ポートフォリオ一覧{% endblock %}
+
+{% block content %}
+    <h2 style="background-color: #f8611b;">G710_admin_portfolio_edit</h2>
+    {{ form.errors }}
+    <form action="{% url 'G710_admin_portfolio_edit' portfolio.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="user_name"><strong>作成者</strong></label>
+        <div>{{ portfolio.user_id.last_name }} {{ portfolio.user_id.first_name }}</div>
+
+        <label for="image"><strong>ポートフォリオ画像</strong></label>
+        <div>
+            <img id="img" src="{{ portfolio.image }}" width=200px><br>
+            <input type="file" name="image" accept="image/*" onChange="imageChange(this,'img')"
+                value="{{ request_img }}">設定する
+        </div>
+
+        <label for="title"><strong>タイトル</strong></label>
+        <div>{{ form.title }}</div>
+
+        <label for="content"><strong>内容</strong></label>
+        <div>{{ form.content }}</div>
+
+        <label for="url">ポートフォリオURL</label>
+        <div>{{ form.url }}</div>
+
+        <label for="release_flg"><strong>公開状況</strong></label>
+        <div>{{ form.release_flg }}</div>
+
+        <label for="del_flg"><strong>削除フラグ</strong></label>
+        <div>{{ form.del_flg }}</div>
+
+        <input type="submit" value="確定">
+    </form>
+    <a href="{% url 'G701_admin_portfolio_detail' portfolio.id %}"><button>戻る</button></a>
+
+    <script>
+        const imageChange = (obj, img) => {
+            let fileReader = new FileReader();
+            fileReader.onload = (function () {
+                document.getElementById(img).src = fileReader.result;
+            });
+            fileReader.readAsDataURL(obj.files[0]);
+        }
+    </script>
+{% endblock %}

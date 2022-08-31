@@ -1,0 +1,37 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者お知らせ一覧{% endblock %}
+
+{% block content %}
+<h2 style="background-color: #f8611b;">G720_admin_news_list</h2>
+<a href="{% url 'G730_admin_news_reg' %}"><button>新規登録</button></a>
+
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>タイトル</th>
+            <th>内容</th>
+            <th>追加日</th>
+            <th>更新日</th>
+            <th>登録者</th>
+            <th></th>
+        </tr>
+    <tbody>
+        {% for n in news %}
+        <tr>
+            <td><img src="{{ n.image }}" alt=""width=50></td>
+            <td>{{ n.title }}</td>
+            <td>{{ n.content }}</td>
+            <td>{{ n.insert_time|date:"Y年n月j日" }}</td>
+            <td>{{ n.update_time|date:"Y年n月j日" }}</td>
+            <td>{{ n.admin_user_id.last_name }} {{ n.admin_user_id.first_name }}</td>
+            <td><a href="{% url 'G760_admin_news_detail' n.id %}"><button>詳細</button></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </thead>
+</table>
+{% endblock %}

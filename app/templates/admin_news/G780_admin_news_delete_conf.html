@@ -1,0 +1,19 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者お知らせ削除確認{% endblock %}
+
+{% block content %}
+
+<h2 style="background-color: #f8611b;">G780_admin_news_delete_conf</h2>
+<p>
+    【{{ news.title }}】を本当に削除しますか？<br>
+    <small>※一度削除すると元に戻すことはできません。</small>
+</p>
+<form action="{% url 'G790_admin_news_delete_comp' news.id %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="確定">
+</form>
+<a href="{% url 'G760_admin_news_detail' news.id %}"><button>戻る</button></a>
+{% endblock %}

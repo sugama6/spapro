@@ -1,0 +1,66 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者登録{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G550_admin_list</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">管理者一覧</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">管理者ID</th>
+                                    <th scope="col">氏名</th>
+                                    <th scope="col">メールアドレス</th>
+                                    <th scope="col">追加日</th>
+                                    <th scope="col">更新日</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for admin in admin_users %}
+                                <tr>
+                                    <td scope="row">{{ admin.id }}</td>
+                                    <td>
+                                        <a href="{% url 'G560_admin_detail' admin.id %}">
+                                            {{ admin.last_name }} {{ admin.first_name }}
+                                        </a>
+                                    </td>
+                                    <td>{{ admin.mail_address }}</td>
+                                    <td>{{ admin.join_time|date:"Y年n月j日" }}</td>
+                                    <td>{{ admin.update_time|date:"Y年n月j日" }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

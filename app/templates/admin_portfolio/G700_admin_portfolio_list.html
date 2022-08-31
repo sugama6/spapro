@@ -1,0 +1,86 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者ポートフォリオ一覧{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G700_admin_portfolio_list</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">ポートフォリオ一覧</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <div class="btn-block col-lg-6 pb-3">
+                            <a href="{% url 'G700_admin_portfolio_list' order_by %}">
+                                <button class="btn btn-spapro-admin btn-block">
+                                    {% if order_by == "normal" %}
+                                    新しい順で表示
+                                    {% elif order_by == "reverse" %}
+                                    古い順で表示
+                                    {% endif %}
+                                </button>
+                            </a>
+                        </div>
+
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">画像</th>
+                                    <th scope="col">タイトル</th>
+                                    <th scope="col">内容</th>
+                                    <th scope="col">公開フラグ</th>
+                                    <th scope="col">登録日</th>
+                                    <th scope="col">更新日</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for pf in portfolio %}
+                                <tr>
+                                    <td scope="row"><img src="{{ pf.image }}" alt="" width="50"></td>
+                                    <td><a href="{{ pf.url }}" target="_blank">{{ pf.title }}</a></td>
+                                    <td>{{ pf.content }}</td>
+                                    <td>
+                                        {% if pf.release_flg == True %}
+                                        公開
+                                        {% elif pf.release_flg == False %}
+                                        非公開
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ pf.insert_time|date:"Y年n月j日" }}</td>
+                                    <td>{{ pf.update_time|date:"Y年n月j日" }}</td>
+                                    <td><a href="{% url 'G701_admin_portfolio_detail' pf.id %}"><button>詳細</button></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

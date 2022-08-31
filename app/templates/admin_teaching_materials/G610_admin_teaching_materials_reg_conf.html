@@ -1,0 +1,92 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者会員一覧{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G610_admin_teaching_materials_reg_conf</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">教材登録</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <label class="form-label" for="title"><strong>教材タイトル</strong></label>
+                        <div class="col-lg-6 pb-3">{{ request.title }}</div>
+
+                        <label class="form-label" for="content"><strong>学習内容</strong></label>
+                        <div class="col-lg-6 pb-3">{{ request.content }}</div>
+
+                        <label class="form-label" for="url"><strong>URL</strong></label>
+                        <div class="col-lg-6 pb-3">{{ request.url }}</div>
+
+                        <label class="form-label" for="image"><strong>画像</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            <img src="{{ request_image }}" width=200px>
+                        </div>
+
+                        <label class="form-label" for="programming_language"><strong>言語</strong></label>
+                        <div class="col-lg-6 pb-3">{{ request.programming_language }}</div>
+
+                        <label class="form-label" for="release_flg"><strong>公開設定</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {% if request.release_flg == "True" %}
+                            公開
+                            {% elif request.release_flg == "False" %}
+                            非公開
+                            {% endif %}
+                        </div>
+
+                        <form action="{% url 'G620_admin_teaching_materials_reg_comp' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="title" value="{{ request.title }}">
+                            <input type="hidden" name="content" value="{{ request.content }}">
+                            <input type="hidden" name="url" value="{{ request.url }}">
+                            <input type="hidden" name="image" value="{{ request_image }}">
+                            <input type="hidden" name="programming_language" value="{{ request.programming_language }}">
+                            <input type="hidden" name="release_flg" value="{{ request.release_flg }}">
+
+                            <div class="btn-block col-lg-6 pb-3">
+                                <input type="submit" class="btn btn-spapro-admin btn-block" value="登録">
+                            </div>
+                        </form>
+
+                        <form action="{% url 'G600_admin_teaching_materials_reg' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="title" value="{{ request.title }}">
+                            <input type="hidden" name="content" value="{{ request.content }}">
+                            <input type="hidden" name="url" value="{{ request.url }}">
+                            <input type="hidden" name="image" value="{{ request_image }}">
+                            <input type="hidden" name="programming_language" value="{{ request.programming_language }}">
+                            <input type="hidden" name="release_flg" value="{{ request.release_flg }}">
+
+                            <div class="btn-block col-lg-6 pb-3">
+                                <input type="submit" class="btn btn-secondary btn-block" value="戻る">
+                            </div>
+
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% endblock %}

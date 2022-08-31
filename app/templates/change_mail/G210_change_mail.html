@@ -1,0 +1,68 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}メールアドレス変更{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G210_change_mail</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                
+                <div class="card-header">
+                    <h2 class="text-dark page-title">メールアドレス変更</h2>
+                </div>
+
+                <div class="card-body">
+                    <div class="content">
+
+                        <form action="{% url 'G220_change_mail_conf' %}" method="POST">
+                            {% csrf_token %}
+
+                            <div class="error_message">{{ error_message }}</div>
+
+                            <label class="form-label" for="old_mail_address"><strong>現在のメールアドレス</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.old_mail_address }}
+                            </div>
+
+                            <label class="form-label" for="new_mail_address"><strong>新しいメールアドレス</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.new_mail_address }}
+                            </div>
+
+                            <label class="form-label"
+                                for="new_mail_address_conf"><strong>新しいメールアドレス（確認用）</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.new_mail_address_conf }}
+                            </div>
+
+                            <div class="btn-block col-lg-6 pb-3">
+                                <input class="btn btn-spapro btn-block" type="submit" value="確認">
+                            </div>
+
+                        </form>
+
+                        <!-- <a href="{% url 'G200_settings' %}"><button>戻る</button></a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者削除確認{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G570_admin_del_conf</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">管理者削除確認</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <p>【管理者: {{ admin.last_name }} {{ admin.first_name }}】を本当に削除してもよろしいですか？<br>
+                            <small>※一度削除したユーザーは元に戻すことができません</small>
+                        </p>
+                        <form action="{% url 'G580_admin_del_comp' id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="btn-block pb-3">
+                                <input type="submit" class="btn btn-danger w-50" value="削除する">
+                            </div>
+                        </form>
+
+                        <div class="btn-block pb-3">
+                            <a href="{% url 'G560_admin_detail' id %}">
+                                <button class="btn btn-secondary btn-block">戻る</button>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

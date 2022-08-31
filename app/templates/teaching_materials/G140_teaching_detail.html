@@ -1,0 +1,28 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}教材詳細{% endblock %}
+
+{% block content %}
+
+    <h2 style="background-color: #f8611b;">G140_teaching_detail</h2>
+
+    <a href="{% url 'G130_teaching_materials' %}"><button>戻る</button></a>
+    <div>
+        <img id="img" src="{{ teaching.image }}" width=200px>
+    </div>
+    
+    <label for="title"><strong>教材タイトル</strong></label>
+    <div>{{ teaching.title }}</div>
+
+    <label for="content"><strong>学習内容</strong></label>
+    <div>{{ teaching.content }}</div>
+
+    <label for="url"><strong>URL</strong></label>
+    <div>{{ teaching.url }}</div>
+
+    <label for="programming_language"><strong>言語</strong></label>
+    <div>{{ teaching.programming_language }}</div>
+
+{% endblock %}

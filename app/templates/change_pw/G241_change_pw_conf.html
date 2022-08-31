@@ -1,0 +1,33 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}パスワード変更確認{% endblock %}
+
+{% block content %}
+
+<h2 style="background-color: #f8611b;">G241_change_pw_conf</h2>
+
+<p>下記のパスワードの変更を確定します。</p>
+<p><strong>{{ request.new_mail_address }}</strong></p>
+
+<!-- 確定用 -->
+<form action="{% url 'G230_change_mail_comp' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="new_mail_address" value="{{ request.new_mail_address }}"> 
+    <input type="submit" value="確定">
+</form>
+
+<!-- 戻る用 -->
+<form action="{% url 'G210_change_mail' %}">
+    {% csrf_token %}
+    <input type="hidden">
+    <input type="hidden" name="old_mail_address" value="{{ request.old_mail_address }}"> 
+    <input type="hidden" name="new_mail_address" value="{{ request.new_mail_address }}"> 
+    <input type="hidden" name="new_mail_address_conf" value="{{ request.new_mail_address_conf }}"> 
+
+    <input type="submit" value="戻る">
+</form>
+<a href="{% url 'G220_change_mail_conf' %}">メールアドレス変更完了</a>
+
+{% endblock %}

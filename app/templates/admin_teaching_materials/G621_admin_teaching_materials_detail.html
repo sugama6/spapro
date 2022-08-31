@@ -1,0 +1,96 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者教材詳細{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G621_admin_teaching_materials_detail</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">教材詳細</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <div class="row mb-4">
+                            <div class="btn-block col-lg-6 pb-3">
+                                <a href="{% url 'G622_admin_teaching_materials_edit' teaching.id %}">
+                                    <button class="btn btn-spapro-admin back-btn">編集</button>
+                                </a>
+                            </div>
+
+                            <div class="btn-block col-lg-6 pb-3 m-0">
+                                <a href="{% url 'G590_admin_teaching_materials_list' %}">
+                                    <button class="btn btn-secondary back-btn">戻る</button>
+                                </a>
+                            </div>
+                        </div>
+
+                        <label class="form-label" for="title">教材タイトル</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ teaching.title }}
+                        </div>
+
+                        <label class="form-label" for="content">教材内容</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ teaching.content }}
+                        </div>
+
+                        <label class="form-label" for="url">教材URL</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ teaching.url }}
+                        </div>
+
+                        <label class="form-label" for="image">画像</label>
+                        <div class="col-lg-6 pb-3">
+                            <img src="{{ teaching.image }}" alt="" width="200">
+                        </div>
+
+                        <label class="form-label" for="programming_language">言語</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ teaching.programming_language }}
+                        </div>
+
+                        <label class="form-label" for="release_flg">公開状況</label>
+                        <div class="col-lg-6 pb-3">
+                            {% if teaching.release_flg == True %}
+                            公開
+                            {% elif teaching.release_flg == False %}
+                            非公開
+                            {% endif %}
+                        </div>
+
+                        <label class="form-label" for="insert_time">作成日</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ teaching.insert_time|date:"Y年n月j日" }}
+                        </div>
+
+                        <label class="form-label" for="update_time">更新日</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ teaching.update_time|date:"Y年n月j日" }}
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

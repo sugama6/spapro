@@ -1,0 +1,65 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}メールアドレス変更確認{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G220_change_mail_conf</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+
+                <div class="card-header">
+                    <h2 class="text-dark page-title">メールアドレス変更確認</h2>
+                </div>
+
+                <div class="card-body">
+                    <div class="content">
+
+                        <p>下記のメールアドレスに変更してもよろしいですか？</p>
+                        <p><strong>{{ request.new_mail_address }}</strong></p>
+
+                        
+                            <!-- 確定用 -->
+                            <form action="{% url 'G230_change_mail_comp' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="new_mail_address" value="{{ request.new_mail_address }}">
+                                <div class="btn-block col-lg-6 pb-3">
+                                    <input class="btn btn-spapro btn-block" type="submit" value="確定">
+                                </div>
+                            </form>
+
+                            <!-- 戻る用 -->
+                            <form action="{% url 'G210_change_mail' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="old_mail_address" value="{{ request.old_mail_address }}">
+                                <input type="hidden" name="new_mail_address" value="{{ request.new_mail_address }}">
+                                <input type="hidden" name="new_mail_address_conf"
+                                    value="{{ request.new_mail_address_conf }}">
+
+                                <div class="btn-block col-lg-6 pb-3">
+                                    <input class="btn btn-secondary btn-block" type="submit" value="戻る">
+                                </div>
+                            </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

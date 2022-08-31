@@ -1,0 +1,88 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}ポートフォリオ登録確認{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G310_portfolio_conf</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">会員登録</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+
+                        <label class="form-label" for="url">ポートフォリオURL</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ request.url }}
+                        </div>
+
+                        <label class="form-label" for="image">ポートフォリオ画像</label>
+                        <div class="col-lg-6 pb-3">
+                            <img src="{{ image }}" alt="" width="200">
+                        </div>
+
+                        <label class="form-label" for="title">ポートフォリオタイトル</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ request.title }}
+                        </div>
+
+                        <label class="form-label" for="content">ポートフォリオ内容</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ request.content }}
+                        </div>
+
+                        <label class="form-label" for="release_flg">公開フラグ</label>
+                        <div class="col-lg-6 pb-3">
+                            {% if request.release_flg == "True" %}
+                            公開
+                            {% elif request.release_flg == "False"%}
+                            非公開
+                            {% endif %}
+                        </div>
+
+                        <form action="{% url 'G320_portfolio_comp' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="url" value="{{ request.url }}">
+                            <input type="hidden" name="image" value="{{ image }}">
+                            <input type="hidden" name="title" value="{{ request.title }}">
+                            <input type="hidden" name="content" value="{{ request.content }}">
+                            <input type="hidden" name="release_flg" value="{{ request.release_flg }}">
+                            <input type="submit" value="完了">
+                        </form>
+
+                        <form action="{% url 'G300_portfolio_reg' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="url" value="{{ request.url }}">
+                            <input type="hidden" name="image" value="{{ image }}">
+                            <input type="hidden" name="title" value="{{ request.title }}">
+                            <input type="hidden" name="content" value="{{ request.content }}">
+                            <input type="hidden" name="release_flg" value="{{ request.release_flg }}">
+                            <input type="submit" value="戻る">
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

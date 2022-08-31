@@ -1,0 +1,79 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者会員一覧{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G590_admin_teaching_materials_list</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">教材一覧</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <div class="btn-block col-lg-6 pb-3">
+                            <a href="{% url 'G600_admin_teaching_materials_reg' %}">
+                                <button class="btn btn-spapro-admin btn-block">新規登録</button>
+                            </a>
+                        </div>
+
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">画像</th>
+                                    <th scope="col">教材タイトル</th>
+                                    <th scope="col">教材内容</th>
+                                    <th scope="col">言語</th>
+                                    <th scope="col">公開状況</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for teaching in teaching_materials %}
+                                <tr>
+                                    <td scope="row"><img src="{{ teaching.image }}" alt="" width=50></td>
+                                    <td><a href="{{ teaching.url }}" target="_blank">{{ teaching.title }}</a></td>
+                                    <td>{{ teaching.content|truncatechars:30 }}</td>
+                                    <td>{{ teaching.programming_language }}</td>
+                                    <td>
+                                        {% if teaching.release_flg == True %}
+                                        公開
+                                        {% elif teaching.release_flg == False %}
+                                        非公開
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'G621_admin_teaching_materials_detail' teaching.id %}">
+                                            <button class="btn btn-success">詳細</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

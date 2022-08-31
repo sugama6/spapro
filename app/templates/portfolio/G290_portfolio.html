@@ -1,0 +1,81 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}ポートフォリオ{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G290_portfolio</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">みんなのポートフォリオ</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+<a href="{% url 'G321_my_portfolio_list' 'normal' %}">マイポートフォリオ</a>
+<a href="{% url 'G300_portfolio_reg' %}">ポートフォリオ登録</a>
+
+{% for pf in portfolio %}
+<div class="card mb-3">
+    <!-- <img src="{{ pf.image }}" class="card-img-top" alt="..." width=100> -->
+    <img class="" src="{{ pf.image }}"  alt="..." width=200>
+    <div class="card-body">
+      <h3 class="text-center pb-4">{{ pf.title }}</h3>
+      <p class="card-text text-center pb-4">{{ pf.content }}</p>
+      <p class="card-text text-right"><small class="text-muted">{{ pf.update_time|date:"Y年n月j日" }}</small></p>
+    </div>
+  </div>
+
+{% endfor %}
+
+<div>
+    <label for="">並び替え</label>
+    <a href="{% url 'G290_portfolio' order_by %}">
+        <button>
+            {% if order_by == "normal" %}
+            新しい順で表示
+            {% elif order_by == "reverse" %}
+            古い順で表示
+            {% endif %}
+        </button>
+    </a>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>タイトル</th>
+            <th>内容</th>
+            <th>アップロード日</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pf in portfolio %}
+        <tr>
+            <td><img src="{{ pf.image }}" alt="" width=50></td>
+            <td><a href="{{ pf.url }}"  target="_blank">{{ pf.title }}</a></td>
+            <td>{{ pf.content }}</td>
+            <td>{{ pf.insert_time|date:"Y年n月j日 H:m:s" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

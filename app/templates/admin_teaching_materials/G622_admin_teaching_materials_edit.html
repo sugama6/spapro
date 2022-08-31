@@ -1,0 +1,97 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者会員一覧{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G622_admin_teaching_materials_edit</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">教材編集</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <form action="{% url 'G622_admin_teaching_materials_edit' id %}" method="POST"
+                            enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <label class="form-label" for="title"><strong>教材タイトル</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.title }}
+                            </div>
+
+                            <label class="form-label" for="content"><strong>教材内容</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.content }}
+                            </div>
+
+                            <label class="form-label" for="url"><strong>教材URL</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.url }}
+                            </div>
+
+                            {% if image_error %}<div class="error_message">{{ image_error }}</div>{% endif %}
+                            <label class="form-label" for="image">画像</label>
+                            <div class="col-lg-6 pb-3">
+                                <img id="img" src="{{ teaching.image }}" width=200px><br>
+                                <input type="file" name="image" accept="image/*" onChange="imageChange(this,'img')"
+                                    value="{{ request_img }}">設定する
+                            </div>
+
+                            <label class="form-label" for="programming_language"><strong>言語</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.programming_language }}
+                            </div>
+
+                            <label class="form-label" for="release_flg"><strong>公開状況</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.release_flg }}
+                            </div>
+
+                            <div class="btn-block col-lg-6 pb-3">
+                                <input type="submit" class="btn btn-spapro-admin btn-block" value="確定">
+                            </div>
+                        </form>
+
+                        <div class="btn-block col-lg-6 pb-3">
+                            <a href="{% url 'G621_admin_teaching_materials_detail' id %}">
+                                <button class="btn btn-secondary back-btn">戻る</button>
+                            </a>
+                        </div>
+                        
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    const imageChange = (obj, img) => {
+        let fileReader = new FileReader();
+        fileReader.onload = (function () {
+            document.getElementById(img).src = fileReader.result;
+        });
+        fileReader.readAsDataURL(obj.files[0]);
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者情報詳細{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G560_admin_detail</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">管理者詳細</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <div class="row">
+                            <div class="btn-block col-lg-6 pb-3 w-25">
+                                <a href="{% url 'G561_admin_edit' admin.id %}">
+                                    <button class="btn btn-spapro-admin back-btn">編集</button>
+                                </a>
+                            </div>
+
+                            <div class="btn-block col-lg-6 pb-3 m-0 w-25">
+                                <a href="{% url 'G550_admin_list' %}">
+                                    <button class="btn btn-secondary back-btn">戻る</button>
+                                </a>
+                            </div>
+
+                            <div class="btn-block col-lg-6 pb-3 m-0 w-25">
+                                <a href="{% url 'G570_admin_del_conf' admin.id %}">
+                                    <button class="btn btn-danger back-btn">削除</button>
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <label class="form-label" for="id"><strong>管理者番号</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ admin.id }}
+                        </div>
+
+                        <label class="form-label" for="mail_address"><strong>メールアドレス</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ admin.mail_address }}
+                        </div>
+
+                        <label class="form-label" for="sex"><strong>性別</strong></label>
+                        <div class="col-lg-6 pb-3">
+
+                            {% if admin.sex == '0' %}
+                            男性
+                            {% elif admin.sex == '1' %}
+                            女性
+                            {% elif admin.sex == '2' %}
+                            それ以外
+                            {% endif %}
+                        </div>
+
+                        <label class="form-label" for="tel"><strong>電話番号</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ admin.tel }}
+                        </div>
+
+                        <label class="form-label" for="postal_code"><strong>郵便番号</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ admin.postal_code }}
+                        </div>
+
+                        <label class="form-label" for="prefectures"><strong>都道府県</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ admin.prefectures }}
+                        </div>
+
+                        <label class="form-label" for="municipalities"><strong>市区町村</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ admin.municipalities }}
+                        </div>
+
+                        <label class="form-label" for="address"><strong>番地・丁目</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ admin.address }}
+                        </div>
+
+                        <label class="form-label" for="apartment_mansion"><strong>アパート・マンション名</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ admin.apartment_mansion }}
+                        </div>
+
+                        <label class="form-label" for="join_time"><strong>追加日</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ admin.join_time|date:"Y年n月j日" }}
+                        </div>
+
+                        <label class="form-label" for="update_time"><strong>更新日</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ admin.update_time|date:"Y年n月j日" }}
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

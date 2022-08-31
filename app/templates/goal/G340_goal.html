@@ -1,0 +1,244 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}目標{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G340_goal</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">目標</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+                        <p>まずは目標をしっかりと定めましょう！</p>
+                        {% if mode == 'new' %}
+                        <form action="{% url 'G340_goal' %}" method="POST">
+                            {% csrf_token %}
+                            <label class="form-label" for="one_year_later">1年後の目標</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.one_year_later }}
+                            </div>
+
+                            <label class="form-label" for="ten_years_later">10年後の目標</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.ten_years_later }}
+                            </div>
+
+                            <label class="form-label" for="learning_programming_why">なぜプログラミングを学習したいのか</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.learning_programming_why }}
+                            </div>
+
+                            <label class="form-label" for="selected_spapro_why">なぜスパプロを選んだ</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.selected_spapro_why }}
+                            </div>
+
+                            <label class="form-label" for="how_much_effort">どのくらいの努力が必要か？</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.how_much_effort }}
+                            </div>
+
+                            <label class="form-label" for="what_i_can_do">自分ができることはこと</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.what_i_can_do }}
+                            </div>
+
+                            <label class="form-label" for="how_can_i_be">どうしたらなれるのか</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.how_can_i_be }}
+                            </div>
+
+                            <label class="form-label" for="how_long_want_to_be">いつまでに成功させたいのか</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.how_long_want_to_be }}
+                            </div>
+
+                            <label class="form-label" for="keep_a_promise">約束を守れるか</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.keep_a_promise }}
+                            </div>
+
+                            <label class="form-label" for="key_man">キーマンは誰か</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.key_man }}
+                            </div>
+
+                            <label class="form-label" for="orientation_expected_date">オリエンテーション完了予定日</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.orientation_expected_date }}
+                            </div>
+
+                            <label class="form-label" for="html_css_expected_date">HTML/CSS完了予定日</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.html_css_expected_date }}
+                            </div>
+
+                            <label class="form-label" for="javascript_expected_date">JavaScript完了予定日</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.javascript_expected_date }}
+                            </div>
+
+                            <label class="form-label" for="python1_expected_date">Python基礎完了予定日</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.python1_expected_date }}
+                            </div>
+
+                            <label class="form-label" for="python2_expected_date">Python応用完了予定日</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.python2_expected_date }}
+                            </div>
+
+                            <label class="form-label" for="sql_expected_date">SQL基礎完了予定日</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.sql_expected_date }}
+                            </div>
+
+                            <label class="form-label" for="django_expected_date">Django基礎完了予定日</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.django_expected_date }}
+                            </div>
+
+                            <label class="form-label" for="portfolio_expected_date">ポートフォリオ作成完了予定日</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.portfolio_expected_date }}
+                            </div>
+
+                            <label class="form-label" for="job_change_expected_date">転職成功予定日</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.job_change_expected_date }}
+                            </div>
+
+                            <div class="btn-block col-lg-6 pb-3">
+                                <input type="submit" class="btn btn-spapro btn-block" value="確定">
+                            </div>
+                        </form>
+
+                        {% elif mode == 'already' %}
+
+                        <div class="btn-block col-lg-6 pb-3">
+                            <a href="{% url 'G350_goal_edit' %}"><button  class="btn btn-spapro btn-block">編集</button></a>
+                        </div>
+
+                        <label class="form-label" for="one_year_later">1年後の目標</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.one_year_later }}
+                        </div>
+
+                        <label class="form-label" for="ten_years_later">10年後の目標</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.ten_years_later }}
+                        </div>
+
+                        <label class="form-label" for="learning_programming_why">なぜプログラミングを学習したいのか</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.learning_programming_why }}
+                        </div>
+
+                        <label class="form-label" for="selected_spapro_why">なぜスパプロを選んだ</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.selected_spapro_why }}
+                        </div>
+
+                        <label class="form-label" for="how_much_effort">どのくらいの努力が必要か？</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.how_much_effort }}
+                        </div>
+
+                        <label class="form-label" for="what_i_can_do">自分ができることはこと</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.what_i_can_do }}
+                        </div>
+
+                        <label class="form-label" for="how_can_i_be">どうしたらなれるのか</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.how_can_i_be }}
+                        </div>
+
+                        <label class="form-label" for="how_long_want_to_be">いつまでに成功させたいのか</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.how_long_want_to_be }}
+                        </div>
+
+                        <label class="form-label" for="keep_a_promise">約束を守れるか</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.keep_a_promise }}
+                        </div>
+
+                        <label class="form-label" for="key_man">キーマンは誰か</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.key_man }}
+                        </div>
+
+                        <label class="form-label" for="orientation_expected_date">オリエンテーション完了予定日</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.orientation_expected_date|date:"Y年n月j日" }}
+                        </div>
+
+                        <label class="form-label" for="html_css_expected_date">HTML/CSS完了予定日</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.html_css_expected_date|date:"Y年n月j日" }}
+                        </div>
+
+                        <label class="form-label" for="javascript_expected_date">JavaScript完了予定日</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.javascript_expected_date|date:"Y年n月j日" }}
+                        </div>
+
+                        <label class="form-label" for="python1_expected_date">Python基礎完了予定日</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.python1_expected_date|date:"Y年n月j日" }}
+                        </div>
+
+                        <label class="form-label" for="python2_expected_date">Python応用完了予定日</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.python2_expected_date|date:"Y年n月j日" }}
+                        </div>
+
+                        <label class="form-label" for="sql_expected_date">SQL基礎完了予定日</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.sql_expected_date|date:"Y年n月j日" }}
+                        </div>
+
+                        <label class="form-label" for="django_expected_date">Django基礎完了予定日</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.django_expected_date|date:"Y年n月j日" }}
+                        </div>
+
+                        <label class="form-label" for="portfolio_expected_date">ポートフォリオ作成完了予定日</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.portfolio_expected_date|date:"Y年n月j日" }}
+                        </div>
+
+                        <label class="form-label" for="job_change_expected_date">転職成功予定日</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ goal.job_change_expected_date|date:"Y年n月j日" }}
+                        </div>
+
+                        {% endif %}
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base_admin_logout_temp_3min_redirect.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者ポートフォリオ詳細{% endblock %}
+
+{% block content %}
+
+<h2>G830_admin_q_and_a_reg_comp</h2>
+
+<p>
+    下記の内容で登録しました。<br>
+    <small>※3秒後に画面が切り替わります</small>
+</p>
+
+<p><strong>Q:</strong> {{ question }}</p>
+<p><strong>A:</strong> {{ answer }}</p>
+
+{% endblock %}

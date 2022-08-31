@@ -1,0 +1,31 @@
+{% extends 'base_login_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者ログイン{% endblock %}
+
+{% block content %}
+
+<form class="form-signin" action="{% url 'G400_admin_login' %}" method="POST">
+    {{ admin.user }}
+    {{ admin.password }}
+    {% csrf_token %}
+    <img class="mb-4" src="{% static 'images/spapro-icon.png' %}" alt="" width="96" height="96">
+    <h1 class="h3 mb-3 font-weight-normal">管理者ログイン</h1>
+    {% if error %}<div style="color: red;">{{ error }}</div>{% endif %}
+
+    {% for user in users %}
+    {{ user.login_id }}
+    {% endfor %}
+
+    <label for="mail_address" class="sr-only">メールアドレス</label>
+    {{ form.mail_address }}
+    <label for="password" class="sr-only">パスワード</label>
+    {{ form.password }}
+
+    <input class="btn mb-5 btn-spapro-admin btn-block btn-lg btn-block" type="submit" value="ログイン">
+
+    <!-- <p>パスワードを忘れた方は<a href="{% url 'G030_reset_pw' %}">こちら</a></p> -->
+    <p class="mt-5 mb-3 text-muted">Copyright&copy; 2022 SPAPRO JUKU</p>
+</form>
+{% endblock %}

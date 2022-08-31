@@ -1,0 +1,54 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}問い合わせフォーム{% endblock %}
+
+{% block content %}
+
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G170_inquiry</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+
+                <div class="card-header">
+                    <h2 class="text-dark page-title">問い合わせ</h2>
+                </div>
+
+                <div class="card-body pb-0">
+                    <form action="{% url 'G171_inquiry_conf' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <label class="form-label" for="title">件名</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ form.title }}
+                        </div>
+
+                        <label class="form-label" for="content">問い合わせ内容</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ form.content }}
+                        </div>
+                        <div class="btn-block col-lg-6 pb-3">
+                            <input class="btn btn-spapro btn-block" type="submit" value="確認">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

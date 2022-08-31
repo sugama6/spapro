@@ -1,0 +1,35 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者お知らせ登録確認{% endblock %}
+
+{% block content %}
+<h2 style="background-color: #f8611b;">G740_admin_news_reg_conf</h2>
+
+<label for="title"><strong>タイトル</strong></label>
+<div>{{ request.title }}</div>
+
+<label for="content"><strong>内容</strong></label>
+<div>{{ request.content }}</div>
+
+<label for=""><strong>画像</strong></label>
+<div><img src="{{ image }}" alt="" width="200"></div>
+
+<form action="{% url 'G750_admin_news_reg_comp' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="title" value="{{ request.title }}">
+    <input type="hidden" name="content" value="{{ request.content }}">
+    <input type="hidden" name="image" value="{{ image }}">
+    <input type="submit" value="確定">
+</form>
+
+<form action="{% url 'G730_admin_news_reg' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="title" value="{{ request.title }}">
+    <input type="hidden" name="content" value="{{ request.content }}">
+    <input type="hidden" name="image" value="{{ image }}">
+    <input type="submit" value="戻る">
+</form>
+
+{% endblock %}

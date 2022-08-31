@@ -1,0 +1,65 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}パスワード変更{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G240_change_pw</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+
+                <div class="card-header">
+                    <h2 class="text-dark page-title">パスワード変更</h2>
+                </div>
+
+                <div class="card-body pb-0">
+                    <div class="content">
+
+                        <form action="{% url 'G250_change_pw_comp' %}" method="POST">
+                            <p>Yakyu89Yusuke</p>
+                            {% csrf_token %}
+                            <div class="error_message">{{ error_message }}</div>
+
+                            <label class="form-label" for="old_password"><strong>現在のパスワード</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.old_password }}
+                            </div>
+
+                            <label class="form-label" for="new_password"><strong>新しいパスワード</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.new_password }}
+                            </div>
+
+                            <label class="form-label" for="new_password_conf"><strong>新しいパスワード（確認用）</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.new_password_conf }}
+                            </div>
+
+                            <div class="btn-block col-lg-6 pb-3">
+                                <input class="btn btn-spapro btn-block" type="submit" value="確定">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

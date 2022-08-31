@@ -1,0 +1,122 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者会員一覧{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G440_admin_member_list</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">会員一覧</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <div>
+                            <form class="form-inline" action="{% url 'G440_admin_member_list' %}" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group col-md-4 mr-3">
+                                    <label class="mr-2">カテゴリー</label>
+                                    <dd class="tab w-25">
+                                        <select class="sch-selector form-control" name="selector" id="selector"
+                                            onchange="searchFunc(this.value)">
+                                            <option value="101">未選択</option>
+                                    </dd>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-4 mr-3">
+                                    <label class="mr-2" class="">ターゲット</label>
+                                    <dd class="tab">
+                                        <div id="secondSelector">
+                                            <select class="sch-selector form-control" name="output"
+                                                id="output"></select>
+                                        </div>
+                                    </dd>
+                                </div>
+
+                                <div class="form-group col-md-4 mr-3">
+                                    <dd class="btn-block pb-3">
+                                        <input type="submit" class="btn btn-success" value="検索">
+                                    </dd>
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <div class="btn-block col-lg-6 pb-3">
+                            <button class="btn btn-spapro-admin btn-block">管理者登録</button>
+                        </div>
+
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">ログインID</th>
+                                    <th scope="col">姓・名</th>
+                                    <th scope="col">メールアドレス</th>
+                                    <th scope="col">性別</th>
+                                    <th scope="col">電話番号</th>
+                                    <th scope="col">郵便番号</th>
+                                    <th scope="col">住所</th>
+                                    <th scope="col">登録日</th>
+                                    <th scope="col">最終更新日</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for user in users %}
+                                <tr>
+                                    <td scope="row">{{ user.login_id }}</td>
+                                    <td>
+                                        <a href="{% url 'G450_admin_member_detail' user.id %}">
+                                            {{ user.last_name }} {{user.first_name }}
+                                        </a>
+                                    </td>
+                                    <td>{{ user.mail_address }}</td>
+                                    <td>
+                                        {% if user.sex == "0" %}
+                                        男
+                                        {% elif user.sex == "1" %}
+                                        女
+                                        {% elif user.sex == "2" %}
+                                        それ以外
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ user.tel }}</td>
+                                    <td>{{ user.postal_code }}</td>
+                                    <td>
+                                        {{ user.prefectures }}
+                                        {{ user.municipalities }}
+                                        {{ user.address }}
+                                        {{ user.apartment_mansion }}
+                                    </td>
+                                    <td>{{ user.join_time|date:"Y年n月j日" }}</td>
+                                    <td>{{ user.update_time|date:"Y年n月j日" }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+
+
+            <script type="text/javascript" src="{% static 'js/searchForm.js' %}"></script>
+            {% endblock %}

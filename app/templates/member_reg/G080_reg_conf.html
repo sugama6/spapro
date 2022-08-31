@@ -1,0 +1,128 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}会員登録確認{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G080_reg_conf</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">会員登録内容確認</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+                        <label class="form-label"><strong>姓・名</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ request.last_name }} {{ request.first_name }}
+                        </div>
+
+                        <label class="form-label"><strong>メールアドレス</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ request.mail_address }}
+                        </div>
+
+                        <label class="form-label"><strong>性別</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {% if request.sex == '0' %}
+                            男
+                            {% elif request.sex == '1' %}
+                            女
+                            {% else %}
+                            どちらでもない
+                            {% endif %}
+
+                        </div>
+
+                        <label class="form-label"><strong>電話番号（半角数字のみ）</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ request.tel }}
+                        </div>
+
+                        <label class="form-label"><strong>郵便番号</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ request.postal_code }}
+                        </div>
+
+                        <label class="form-label"><strong>都道府県</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ request.prefectures }}
+                        </div>
+
+                        <label class="form-label"><strong>市区町村</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ request.municipalities }}
+                        </div>
+
+                        <label class="form-label"><strong>番地・丁目</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ request.address }}
+                        </div>
+
+                        <label class="form-label"><strong>アパート・マンション名</strong></label>
+                        <div class="col-lg-6 pb-3">
+                            {{ request.apartment_mansion }}
+                        </div>
+
+                        <form action="{% url 'G090_reg_comp' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="last_name" value="{{ request.last_name }}">
+                            <input type="hidden" name="first_name" value="{{ request.first_name }}">
+                            <input type="hidden" name="mail_address" value="{{ request.mail_address }}">
+                            <input type="hidden" name="password" value="{{ request.password }}">
+                            <input type="hidden" name="sex" value="{{ request.sex }}">
+                            <input type="hidden" name="tel" value="{{ request.tel }}">
+                            <input type="hidden" name="postal_code" value="{{ request.postal_code }}">
+                            <input type="hidden" name="prefectures" value="{{ request.prefectures }}">
+                            <input type="hidden" name="municipalities" value="{{ request.municipalities }}">
+                            <input type="hidden" name="address" value="{{ request.address }}">
+                            <input type="hidden" name="apartment_mansion" value="{{ request.apartment_mansion }}">
+
+                            <div class="btn-block col-lg-6 pb-3">
+                                <input type="submit" class="btn btn-spapro btn-block" value="送信">
+                            </div>
+
+                        </form>
+                        <form action="{% url 'G070_reg' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="last_name" value="{{ request.last_name }}">
+                            <input type="hidden" name="first_name" value="{{ request.first_name }}">
+                            <input type="hidden" name="mail_address" value="{{ request.mail_address }}">
+                            <input type="hidden" name="password" value="{{ request.password }}">
+                            <input type="hidden" name="sex" value="{{ request.sex }}">
+                            <input type="hidden" name="tel" value="{{ request.tel }}">
+                            <input type="hidden" name="postal_code" value="{{ request.postal_code }}">
+                            <input type="hidden" name="prefectures" value="{{ request.prefectures }}">
+                            <input type="hidden" name="municipalities" value="{{ request.municipalities }}">
+                            <input type="hidden" name="address" value="{{ request.address }}">
+                            <input type="hidden" name="apartment_mansion" value="{{ request.apartment_mansion }}">
+                            
+                            <div class="btn-block col-lg-6 pb-3">
+                                <input type="submit" class="btn btn-secondary btn-block" value="戻る">
+                            </div>
+
+                        </form>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

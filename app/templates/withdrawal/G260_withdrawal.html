@@ -1,0 +1,50 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}退会{% endblock %}
+
+{% block content %}
+
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G260_withdrawal</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="card p-2 m-3">
+
+        <div class="card-header">
+            <h2 class="text-dark page-title">退会</h2>
+        </div>
+
+        <div class="card-body">
+            <div class="content">
+                
+                <form action="{% url 'G270_withdrawal_conf' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="col-lg-6 pb-3">
+                        <p>
+                            スパプロ塾から退会します。<br>
+                            <small>一度退会を削除すると、元に戻すことはできません。</small>
+                        </p>
+                    </div>
+
+                    <div class="btn-block col-lg-6 pb-3">
+                        <input class="btn btn-danger" type="submit" value="アカウント削除">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

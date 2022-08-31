@@ -1,0 +1,49 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}マイポートフォリオ一覧{% endblock %}
+
+{% block content %}
+
+    <h2 style="background-color: #f8611b;">G321_my_portfolio_list</h2>
+    <label for="">並び替え</label>
+    <a href="{% url 'G321_my_portfolio_list' order_by %}">
+        <button>
+            {% if order_by == "normal" %}
+            新しい順で表示
+            {% elif order_by == "reverse" %}
+            古い順で表示
+            {% endif %}
+        </button>
+    </a>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>タイトル</th>
+                <th>内容</th>
+                <th>公開状況</th>
+                <th>アップロード日</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pf in portfolio %}
+            <tr>
+                <td><img src="{{ pf.image }}" alt="" width=50></td>
+                <td><a href="{{ pf.url }}" target="_blank"></a>{{ pf.title }}</td>
+                <td>{{ pf.content }}</td>
+                <td>
+                    {% if pf.release_flg == True %}
+                    公開
+                    {% elif pf.release_flg == False %}
+                    非公開
+                    {% endif %}
+                </td>
+                <td>{{ pf.insert_time|date:"Y年n月j日 H:m:s" }}</td>
+                <td><a href="{% url 'G330_portfolio_edit' pf.id %}"><button>編集</button></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

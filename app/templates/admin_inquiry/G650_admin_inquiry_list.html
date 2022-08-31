@@ -1,0 +1,79 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}問い合わせ内容一覧{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G650_admin_inquiry_list</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">問い合わせ一覧</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">既読</th>
+                                    <th scope="col">解決フラグ</th>
+                                    <th scope="col">問い合わせ日時</th>
+                                    <th scope="col">問い合わせ元</th>
+                                    <th scope="col">件名</th>
+                                    <th scope="col">問い合わせ内容</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for inquiry in inquirys %}
+                                <tr>
+                                    {% if inquiry.read_flg == True %}
+                                    <td scope="row">既読</td>
+                                    {% elif inquiry.read_flg == False %}
+                                    <td style="color: red;">未読</td>
+                                    {%endif %}
+
+                                    {% if inquiry.answer_flg == True %}
+                                    <td>解決済</td>
+                                    {% elif inquiry.answer_flg == False %}
+                                    <td style="color: red;">未解決</td>
+                                    {%endif %}
+
+                                    <td>{{ inquiry.insert_time|date:"Y年n月j日" }}</td>
+                                    <td>{{ inquiry.user_id.last_name }} {{ inquiry.user_id.first_name }}</td>
+                                    <td>{{ inquiry.title }}</td>
+                                    <td>{{ inquiry.content|truncatechars:20 }}</td>
+                                    <td>
+                                        <a href="{% url 'G660_admin_inquiry_detail' inquiry.id %}">
+                                            <button class="btn btn-success">詳細</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

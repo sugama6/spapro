@@ -1,0 +1,16 @@
+{% extends 'base_admin_logout_temp_3min_redirect.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者お知らせ登録確認{% endblock %}
+
+{% block content %}
+<h2 style="background-color: #f8611b;">G750_admin_news_reg_comp</h2>
+
+<p>
+    お知らせ【{{ news_title }}】を作成しました。<br>
+    3秒後に画面が切り替わります
+</p>
+
+
+{% endblock %}

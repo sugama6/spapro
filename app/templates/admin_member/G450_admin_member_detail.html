@@ -1,0 +1,82 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者会員詳細{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G450_admin_member_detail</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">会員詳細</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <div class="row mb-4">
+                            <div class="btn-block col-lg-6 pb-3">
+                                <a href="{% url 'G460_admin_member_edit' user.id %}">
+                                    <button class="btn btn-spapro-admin back-btn">編集</button>
+                                </a>
+                            </div>
+                            <div class="btn-block col-lg-6 pb-3 m-0">
+                                <a href="{% url 'G440_admin_member_list' %}">
+                                    <button class="btn btn-secondary back-btn">戻る</button>
+                                </a>
+                            </div>
+                        </div>
+
+                        <label class="form-label">ログインID</label>
+                        <div class="col-lg-6 pb-3">{{ user.login_id }}</div>
+
+                        <label class="form-label">氏名</label>
+                        <div class="col-lg-6 pb-3">{{ user.last_name }} {{ user.first_name }}</div>
+
+                        <label class="form-label">メールアドレス</label>
+                        <div class="col-lg-6 pb-3">{{ user.mail_address }}</div>
+
+                        <label class="form-label">性別</label>
+                        <div class="col-lg-6 pb-3">{% if user.sex == "0" %}男{% elif user.sex == "1" %}女{% elif user.sex
+                            == "2" %}それ以外{% endif %}</div>
+
+                        <label class="form-label">電話番号</label>
+                        <div class="col-lg-6 pb-3">{{ user.tel }}</div>
+
+                        <label class="form-label">郵便番号</label>
+                        <div class="col-lg-6 pb-3">{{ user.postal_code }}</div>
+
+                        <label class="form-label">住所</label>
+                        <div class="col-lg-6 pb-3">
+                            {{ user.prefectures }}
+                            {{ user.municipalities }}
+                            {{ user.address }}
+                            {{ user.apartment_mansion }}
+                        </div>
+                        <label class="form-label">入会日</label>
+                        <div class="col-lg-6 pb-3">{{ user.join_time|date:"Y年n月j日" }}</div>
+
+                        <label class="form-label">更新日</label>
+                        <div class="col-lg-6 pb-3">{{ user.update_time|date:"Y年n月j日" }}</div>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        {% endblock %}

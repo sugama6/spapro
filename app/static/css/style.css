@@ -1,0 +1,55 @@
+.error_message {
+    color: red;
+}
+
+.background-spapro {
+  background-color: #f8611b !important;
+}
+
+.btn-spapro {
+    background-color: #f8611b !important;
+    color: #fff !important;
+  }
+
+.text-spapro {
+  color: #f8611b !important;
+}
+
+.background-spapro-admin {
+  background-color: rgb(0, 132, 202) !important;
+}
+
+.btn-spapro-admin {
+    background-color: rgb(0, 132, 202) !important;
+    color: #fff !important;
+  }
+
+.text-spapro-admin {
+  color: rgb(0, 132, 202) !important;
+}
+
+.fixed {
+  position: fixed !important;
+}
+
+.form-label{
+  padding-left: 7.5px;
+}
+
+.btn-block {
+  width: 50%;
+  padding: 6px 7.5px !important;
+  /* padding-left: 7.5px;  
+  padding-right: 7.5px; */
+}
+
+.back-btn {
+  width: 100%;
+  padding: 6px 7.5px !important;
+}
+/* .update-time {
+  
+} */
+/* .background-spapro {
+  background-color: #f39b72 !important; 
+} */

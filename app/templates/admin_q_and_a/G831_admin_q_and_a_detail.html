@@ -1,0 +1,30 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者ポートフォリオ詳細{% endblock %}
+
+{% block content %}
+
+<h2>G831_admin_q_and_a_detail</h2>
+
+<div>
+    <a href="{% url 'G840_admin_q_and_a_edit' qa.id %}">
+        <button>編集</button>
+    </a>
+    <a href="{% url 'G850_admin_q_and_a_del_conf' qa.id %}">
+        <button>削除</button>
+    </a>
+    <a href="{% url 'G800_admin_q_and_a_list' %}">
+        <button>戻る</button>
+    </a>
+</div>
+
+<label for="question">質問</label>
+<div>{{ qa.question }}</div>
+
+<label for="answer">回答</label>
+<div>{{ qa.answer }}</div>
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base_admin_logout_temp_3min_redirect.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者削除確認{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G580_admin_del_comp</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">管理者削除完了</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+                        <p>【管理者: {{ admin.last_name }} {{ admin.first_name }}】の削除が完了しました。<br>
+                            <small>3秒後に画面が切り替わります</small>
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

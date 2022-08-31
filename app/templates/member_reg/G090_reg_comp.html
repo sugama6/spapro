@@ -1,0 +1,46 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}会員登録完了{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G090_reg_comp</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">会員登録完了</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <div>
+                            <p>
+                                ご入力いただいたメールアドレス宛にメールを送信しました。<br>
+                                <small>3秒後に画面が切り替わります</small>
+                            </p>
+                            <!-- <p><a href="{% url 'G020_login' %}"><button>ログイン画面へ</button></a></p> -->
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

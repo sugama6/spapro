@@ -1,0 +1,47 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Q&A{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G190_q_and_a</h2>
+                    <h2 class="text-dark page-title">Q & A</h4>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    {% for qa in q_and_a %}
+    <div class="card p-2 m-3">
+        <div class="card-header">
+            <h3 class="mt-0 text-spapro">
+                <small>{{ qa.question|truncatechars:50 }}
+                </small>
+            </h3>
+        </div>
+        <div class="card-body">
+            <div class="media">
+                <div class="media-body">
+                    <div class="p-2">
+                        {{ qa.answer|truncatechars:100 }}
+                    </div>
+                    <div class="text-right text-secondary">
+                        <span class="p-2"><small>更新日: {{ qa.insert_time|date:"Y年n月j日" }}</small></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

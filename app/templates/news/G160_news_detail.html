@@ -1,0 +1,30 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}お知らせ詳細{% endblock %}
+
+{% block content %}
+
+<h2 style="background-color: #f8611b;">G160_news_detail</h2>
+
+<label for="image"><strong>画像</strong></label>
+<div><img src="{{ news.image }}" alt="" width="200"></div>
+
+<label for="title"><strong>お知らせタイトル</strong></label>
+<div>{{ news.title }}</div>
+
+<label for="content"><strong>お知らせ内容</strong></label>
+<div>{{ news.content }}</div>
+
+<div>
+    <a href="{% url 'G150_news' %}">
+        <button>戻る</button>
+    </a>
+</div>
+
+
+
+
+</table>
+{% endblock %}

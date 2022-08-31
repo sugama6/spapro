@@ -1,0 +1,29 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者ポートフォリオ詳細{% endblock %}
+
+{% block content %}
+
+<h2>G850_admin_q_and_a_del_conf</h2>
+
+<p>
+    以下のQ&Aを削除します<br>
+    <small>※一度削除すると元に戻すことはで来ません。</small>
+</p>
+
+<label for="">質問</label>
+<p>{{ qa.question }}</p>
+<label for="">回答</label>
+<p>{{ qa.answer }}</p>
+
+<form action="{% url 'G860_admin_q_and_a_del_comp' qa.id %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="確定">
+</form>
+
+<a href="{% url 'G831_admin_q_and_a_detail' qa.id %}">
+    <button>戻る</button>
+</a>
+{% endblock %}

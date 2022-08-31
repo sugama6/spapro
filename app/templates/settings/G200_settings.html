@@ -1,0 +1,14 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}設定{% endblock %}
+
+{% block content %}
+
+<h2 style="background-color: #f8611b;">G200_settings</h2>
+<a href="{% url 'G210_change_mail' %}">メールアドレス変更</a>
+<a href="{% url 'G240_change_pw' %}">パスワード変更</a>
+<a href="{% url 'G260_withdrawal' %}">退会</a>
+
+{% endblock %}

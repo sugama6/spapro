@@ -1,0 +1,36 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者ポートフォリオ詳細{% endblock %}
+
+{% block content %}
+
+<h2>G820_admin_q_and_a_reg_conf</h2>
+
+<label for="question">質問</label>
+<div>{{ request.question }}</div>
+
+<label for="answer">回答</label>
+<div>{{ request.answer }}</div>
+
+<label for="sort">並び順</label>
+<div>{{ request.sort }}</div>
+
+<form action="{% url 'G830_admin_q_and_a_reg_comp' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="question" value="{{ request.question }}">
+    <input type="hidden" name="answer" value="{{ request.answer }}">
+    <input type="hidden" name="sort" value="{{ request.sort }}">
+    <input type="submit" value="確定">
+</form>
+
+<form action="{% url 'G810_admin_q_and_a_reg' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="question" value="{{ request.question }}">
+    <input type="hidden" name="answer" value="{{ request.answer }}">
+    <input type="hidden" name="sort" value="{{ request.sort }}">
+    <input type="submit" value="戻る">
+</form>
+
+{% endblock %}

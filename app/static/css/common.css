@@ -1,0 +1,192 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.popup-inner  {
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid#007bff !important;
+}
+
+.page-title {
+  margin: 10px 30px;
+}
+
+.disabled-link {
+  pointer-events: none;
+}
+
+/* 検索、住所検索 */
+.common-search{
+  background-color: #0d6475;
+  color: #fff;
+}
+
+/* クリア */
+.common-clear{
+  background-color: #cccccc;
+  color: #000;
+}
+
+/* リセット */
+.common-reset{
+  background-color: #ec5d71;
+  color: #fff;
+}
+
+/* 新規 */
+.common-new{
+  background-color: #19448e;
+  color: #fff;
+}
+
+/* 追加、行追加 */
+.common-add{
+  background-color: #f8b500;
+  color: #000;
+}
+
+/* 更新 */
+.common-update{
+  background-color: #c97586;
+  color: #fff;
+}
+
+/* 変更 */
+.common-change{
+  background-color: #250d00;
+  color: #fff;
+}
+
+/* 複写 */
+.common-copy{
+  background-color: #ed6d3d;
+  color: #fff;
+}
+
+/* 修正 */
+.common-modify{
+  background-color: #ec5d71;
+  color: #fff;
+}
+
+/* 次へ */
+.common-next{
+  background-color: #3165e8;
+  color: #fff;
+}
+
+/* 戻る */
+.common-back{
+  background-color: #c0c6c9;
+  color: #000;
+}
+
+/* 登録 */
+.common-regist{
+  background-color: #b44c97;
+  color: #fff;
+}
+
+/* 予約 */
+.common-reserve{
+  background-color: #fef263;
+  color: #fff;
+}
+
+/* 予約 */
+.common-reserve{
+  background-color: #fef263;
+  color: #000;
+}
+
+/* 保存 */
+.common-save{
+  background-color: #b44c97;
+  color: #fff;
+}
+
+/* 出力 */
+.common-output{
+  background-color: #17184b;
+  color: #fff;
+}
+
+/* 必須 */
+.common-required{
+  background-color: #e60033;
+  color: #fff;
+}
+
+/* 削除 */
+.common-delete{
+  background-color: #797979;
+  color: #fff;
+}
+
+/* 集計 */
+.common-count{
+  background-color: #008899;
+  color: #fff;
+}
+
+.btn-spapro btn-block {
+  background-color: #f8611b !important;
+  color: #fff !important;
+}
+.btn-search, .btn-zip {
+  background-color: #c97586;
+  color: #fff;
+}
+.btn-clear {
+  background-color: #797979;
+  color: #fff;
+}
+.btn-csv {
+  background-color: #17184b;
+  color: #fff;
+}
+.btn-add {
+  background-color: #F8B500;
+}
+.btn-update {
+  background-color: #ec5d71;
+  color: #fff;
+}
+.btn-next {
+  background-color: #165e83;
+  color: #fff;
+}
+.btn-exit {
+  background-color: #f6bfbc;
+}
+.btn-upload {
+  background-color: #17184b;
+  color: #fff;
+}
+.btn-feeadd{
+  background-color: #F8B500;
+  color: #fff;
+}
+.btn-nextmonth {
+  background-color: #B44C97;
+  color: #fff;
+}
+.btn-delete {
+  background-color: #797979;
+  color: #fff;
+}
+.btn-logout {
+  background-color: #797979;
+  color: #fff;
+  width: 150px !important;
+  }

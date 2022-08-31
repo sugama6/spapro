@@ -1,0 +1,15 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者強制退会確認{% endblock %}
+
+{% block content %}
+<body>
+    <h2 style="background-color: #f8611b;">G510_admin_forced_withdrawal_conf</h2>
+    <p>本当にこの【{{ user.last_name }} {{ user.first_name }}】を退会させますか？<br><small>※一度退会させると元に戻すことはできません</small></p>
+    <form action="{% url 'G520_admin_forced_withdrawal_comp' user.id %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="OK">
+    </form>
+{% endblock %}

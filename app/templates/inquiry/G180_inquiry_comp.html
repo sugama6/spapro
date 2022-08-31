@@ -1,0 +1,33 @@
+{% extends 'base_logout_temp_3min_redirect.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}問い合わせ内容確認{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G180_inquiry_comp</h2>
+                    <h2 class="text-dark page-title">問い合わせ完了</h4>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="card p-2 m-3">
+        <div class="card-body pb-0">
+            <p>
+                お問い合わせが完了しました。<br>
+                <small>3秒後に画面が切り替わります。</small>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

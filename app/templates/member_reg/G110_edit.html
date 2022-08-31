@@ -1,0 +1,107 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}会員編集{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G110_edit</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">基本情報編集</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+                        <form action="{% url 'G110_edit' %}" method="POST">
+                            {{ form.errors }}
+                            {% csrf_token %}
+
+                            {% if form.errors.sex %}
+                            <div class="error_message">{{ form.errors.sex }}</div>
+                            {% endif %}
+                            <label class="form-label">性別</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.sex }}
+                            </div>
+
+                            {% if form.errors.tel %}
+                            <div class="error_message">{{ form.errors.tel }}</div>
+                            {% endif %}
+                            <label class="form-label">電話番号（ハイフンなし）</label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.tel }}
+                            </div>
+
+                            <script src="https://yubinbango.github.io/yubinbango/yubinbango.js"
+                                charset="UTF-8"></script>
+                            <div class="h-adr">
+                                <span class="p-country-name" style="display:none;">Japan</span>
+                                {% if form.errors.postal_code %}
+                                <div class="error_message">{{ form.errors.postal_code }}</div>
+                                {% endif %}
+                                <label class="form-label">郵便番号（ハイフンなし）</label>
+                                <div class="col-lg-6 pb-3">
+                                    {{ form.postal_code }}
+                                </div>
+
+                                <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+
+                                {% if form.errors.prefectures %}
+                                <div class="error_message">{{ form.errors.prefectures }}</div>
+                                {% endif %}
+                                <label class="form-label">都道府県</label>
+                                <div class="col-lg-6 pb-3">
+                                    {{ form.prefectures }}
+                                </div>
+
+                                {% if form.errors.municipalities %}
+                                <div class="error_message">{{ form.errors.municipalities }}</div>
+                                {% endif %}
+                                <label class="form-label">市区町村</label>
+                                <div class="col-lg-6 pb-3">
+                                    {{ form.municipalities }}
+                                </div>
+
+                                {% if form.errors.address %}
+                                <div class="error_message">{{ form.errors.address }}</div>
+                                {% endif %}
+                                <label class="form-label">番地・丁目</label>
+                                <div class="col-lg-6 pb-3">
+                                    {{ form.address }}
+                                </div>
+
+                                {% if form.errors.apartment_mansion %}
+                                <div class="error_message">{{ form.errors.apartment_mansion }}</div>
+                                {% endif %}
+                                <label class="form-label">アパート・マンション名</label>
+                                <div class="col-lg-6 pb-3">
+                                    {{ form.apartment_mansion }}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 pb-3">
+                                <input type="submit" class="btn btn-spapro btn-block" value="確定">
+                            </div>
+                        </form>
+                        <!-- <a href="{% url 'G100_member_top' %}"><button>会員TOPへ戻る</button></a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

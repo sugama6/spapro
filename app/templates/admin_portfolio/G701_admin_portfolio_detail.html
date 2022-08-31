@@ -1,0 +1,42 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者ポートフォリオ詳細{% endblock %}
+
+{% block content %}
+<h2 style="background-color: #f8611b;">G701_admin_portfolio_detail</h2>
+
+<div>
+    <a href="{% url 'G710_admin_portfolio_edit' portfolio.id %}"><button>編集</button></a>
+    <a href="{% url 'G711_admin_portfolio_delete_conf' portfolio.id %}"><button>削除</button></a>
+    <a href="{% url 'G700_admin_portfolio_list' 'normal' %}"><button>戻る</button></a>
+</div>
+
+<label for="user_name"><strong>作成者</strong></label>
+<div>{{ portfolio.user_id.last_name }} {{ portfolio.user_id.first_name }}</div>
+
+<label for="image"><strong>ポートフォリオ画像</strong></label>
+<div>
+    <img id="img" src="{{ portfolio.image }}" width=200px><br>
+    <input type="file" name="image" accept="image/*" onChange="imageChange(this,'img')" value="{{ request_img }}">設定する
+</div>
+
+<label for="title"><strong>タイトル</strong></label>
+<div>{{ portfolio.title }}</div>
+
+<label for="content"><strong>内容</strong></label>
+<div>{{ portfolio.content }}</div>
+
+<label for="url">ポートフォリオURL</label>
+<div>{{ portfolio.url }}</div>
+
+<label for="release_flg"><strong>公開状況</strong></label>
+<div>{{ portfolio.release_flg }}</div>
+
+<label for="del_flg"><strong>削除フラグ</strong></label>
+<div>{{ portfolio.del_flg }}</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base_admin_logout_temp_3min_redirect.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}問い合わせ内容詳細{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G690_admin_inquiry_res_comp</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">問い合わせ返信完了</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+                        <p>
+                            {% if result == 'success' %}
+                            【{{ inquiry.title }}】についての回答を送信しました。
+                            {% elif result == 'already' %}
+                            すでに回答済みです。
+                            {% endif %}
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

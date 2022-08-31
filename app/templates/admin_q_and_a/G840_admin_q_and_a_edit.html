@@ -1,0 +1,22 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者ポートフォリオ詳細{% endblock %}
+
+{% block content %}
+
+<h2>G840_admin_q_and_a_edit</h2>
+
+<form action="{% url 'G840_admin_q_and_a_edit' qa.id %}" method="POST">
+    {% csrf_token %}
+    <label for="question"><strong>質問</strong></label>
+    <div>{{ form.question }}</div>
+
+    <label for="answer"><strong>回答</strong></label>
+    <div>{{ form.answer }}</div>
+
+    <input type="submit" value="確定">
+</form>
+
+{% endblock %}

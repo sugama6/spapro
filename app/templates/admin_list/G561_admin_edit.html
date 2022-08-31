@@ -1,0 +1,139 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者情報編集{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G561_admin_edit</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">管理者編集</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <form action="{% url 'G561_admin_edit' admin.id %}" method="POST">
+                            {% csrf_token %}
+                            
+                            {{ form.errors }}
+                            {% if form.errors.id %}
+                            <div class="error_message">{{ form.errors.id}}
+
+                            </div>
+                            {% endif %}
+                            <label class="form-label" for="id"><strong>管理者番号</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ admin.id }}
+                            </div>
+
+                            {% if form.errors.mail_address %}
+                            <div class="error_message">{{ form.errors.mail_address}}
+
+                            </div>
+                            {% endif %}
+                            <label class="form-label" for="mail_address"><strong>メールアドレス</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.mail_address }}
+                            </div>
+
+                            {% if form.errors.tel %}
+                            <div class="error_message">{{ form.errors.tel}}
+
+                            </div>
+                            {% endif %}
+                            <label class="form-label" for="tel"><strong>電話番号</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ form.tel }}
+                            </div>
+
+                            <script src="https://yubinbango.github.io/yubinbango/yubinbango.js"
+                                charset="UTF-8"></script>
+                            <div class="h-adr">
+                                <span class="p-country-name" style="display:none;">Japan</span>
+                                {% if form.errors.postal_code %}
+                                <div class="error_message">{{ form.errors.postal_code}}
+
+                                </div>
+                                {% endif %}
+                                <label class="form-label" for="postal_code"><strong>郵便番号</strong></label>
+                                <div class="col-lg-6 pb-3">
+                                    {{ form.postal_code }}
+                                </div>
+
+                                {% if form.errors.prefectures %}
+                                <div class="error_message">{{ form.errors.prefectures}}
+
+                                </div>
+                                {% endif %}
+                                <label class="form-label" for="prefectures"><strong>都道府県</strong></label>
+                                <div class="col-lg-6 pb-3">
+                                    {{ form.prefectures }}
+                                </div>
+
+                                {% if form.errors.municipalities %}
+                                <div class="error_message">{{ form.errors.municipalities}}
+
+                                </div>
+                                {% endif %}
+                                <label class="form-label" for="municipalities"><strong>市区町村</strong></label>
+                                <div class="col-lg-6 pb-3">
+                                    {{ form.municipalities }}
+                                </div>
+
+                                {% if form.errors.address %}
+                                <div class="error_message">{{ form.errors.address}}
+
+                                </div>
+                                {% endif %}
+                                <label class="form-label" for="address"><strong>番地・丁目</strong></label>
+                                <div class="col-lg-6 pb-3">
+                                    {{ form.address }}
+                                </div>
+
+                                {% if form.errors.apartment_mansion %}
+                                <div class="error_message">{{ form.errors.apartment_mansion}}
+
+                                </div>
+                                {% endif %}
+                                <label class="form-label" for="apartment_mansion"><strong>アパート・マンション名</strong></label>
+                                <div class="col-lg-6 pb-3">
+                                    {{ form.apartment_mansion }}
+                                </div>
+                            </div>
+
+                            <div class="btn-block col-lg-6 pb-3">
+                                <input type="submit" class="btn btn-spapro-admin back-btn" value="確定">
+                            </div>
+
+                        </form>
+
+                        <div class="btn-block col-lg-6 pb-3">
+                            <a href="{% url 'G560_admin_detail' admin.id %}">
+                                <button class="btn btn-secondary back-btn">戻る</button>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

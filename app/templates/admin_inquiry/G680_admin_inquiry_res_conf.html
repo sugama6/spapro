@@ -1,0 +1,65 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}問い合わせ内容返信確認{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G680_admin_inquiry_res_conf</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+                <div class="card-header">
+                    <h2 class="text-dark page-title">問い合わせ返信確認</h4>
+                </div>
+
+                <div class="card-body">
+                    <section class="content">
+
+                        <div>
+                            <p>以下の内容で送信してもよろしいでしょうか？</p>
+                            <label class="form-label" for=""><strong>返信内容</strong></label>
+                            <div class="col-lg-6 pb-3">
+                                {{ content }}
+                            </div>
+                        </div>
+
+                        <form action="{% url 'G690_admin_inquiry_res_comp' inquiry.id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="content" value="{{ content }}">
+
+                            <div class="btn-block col-lg-6 pb-3">
+                                <input type="submit" class="btn btn-spapro-admin back-btn" value="送信">
+                            </div>
+                        </form>
+
+                        <form action="{% url 'G660_admin_inquiry_detail' inquiry.id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="content" value="{{ content }}">
+
+                            <div class="btn-block col-lg-6 pb-3">
+                                <input type="submit" class="btn btn-secondary back-btn" value="戻る">
+                            </div>
+                        </form>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

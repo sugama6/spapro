@@ -1,0 +1,33 @@
+{% extends 'base_admin_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者お知らせ詳細{% endblock %}
+
+{% block content %}
+
+<h2 style="background-color: #f8611b;">G760_admin_news_detail</h2>
+
+<div>
+    <a href="{% url 'G770_admin_news_edit' news.id %}"><button>編集</button></a>
+    <a href="{% url 'G720_admin_news_list' %}"><button>戻る</button></a>
+    <a href="{% url 'G780_admin_news_delete_conf' news.id %}"><button>削除</button></a>
+</div>
+
+<label for="image"><strong>画像</strong></label>
+<div><img src="{{ news.image }}" alt="" width=200></div>
+
+<label for="admin_user_id"><strong>作成者</strong></label>
+<div>{{ news.admin_user_id.last_name }} {{ news.admin_user_id.first_name }}</div>
+
+<label for="title"><strong>タイトル</strong></label>
+<div>{{ news.title }}</div>
+
+<label for="content"><strong>内容</strong></label>
+<div>{{ news.content }}</div>
+
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base_admin_logout_temp_3min_redirect.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}管理者ポートフォリオ削除完了{% endblock %}
+
+{% block content %}
+<h2 style="background-color: #f8611b;">G712_admin_portfolio_delete_comp</h2>
+
+<p>{{ portfolio.user_id.last_name }} {{ portfolio.user_id.first_name }} の 【{{ portfolio.title }}】を削除しました。
+    <small>3秒後に画面が切り替わります。</small>
+</p>
+<label for="user_name"><strong>作成者</strong></label>
+<div>{{ portfolio.user_id.last_name }} {{ portfolio.user_id.first_name }}</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base_logout_temp.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}退会確認{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 style="background-color: #f8611b;">G270_withdrawal_conf</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card p-2 m-3">
+
+                <div class="card-header">
+                    <h2 class="text-dark page-title">退会</h2>
+                </div>
+
+                <div class="card-body">
+                    <div class="content">
+
+                        <form action="{% url 'G280_withdrawal_comp' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="error_message">{{ error_message }}</div>
+
+                            <div class="form-label">
+                                <p>アカウントを削除するにはパスワードを入力してください。</p>
+                            </div>
+
+                            <div class="col-lg-6 pb-3">
+                                {{ form.password }}
+                            </div>
+
+                            <div class="btn-block col-lg-6 pb-3">
+                                <input class="btn btn-danger btn-block" type="submit" value="退会を確定">
+                            </div>
+                        </form>
+
+                        <form action="{% url 'G260_withdrawal' %}" method="GET">
+                            <div style="padding: 0px 7.5px;">
+                                <button class="btn btn-secondary btn-block">戻る</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
